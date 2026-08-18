@@ -2,7 +2,7 @@
 /*
  * SPDX-License-Identifier: GPL-2.0-only
  *
- * Copyright (C) 2023 ImmortalWrt.org
+ * Copyright (C) 2027 ImmortalWrt.org
  */
 
 'use strict';
@@ -37,7 +37,7 @@ const allow_insecure = uci.get(uciconfig, ucisubscription, 'allow_insecure') || 
       user_agent = uci.get(uciconfig, ucisubscription, 'user_agent'),
       via_proxy = uci.get(uciconfig, ucisubscription, 'update_via_proxy') || '0';
 
-const routing_mode = uci.get(uciconfig, ucimain, 'routing_mode') || 'bypass_mainalnd_china';
+const routing_mode = uci.get(uciconfig, ucimain, 'routing_mode') || 'bypass_mainland_china';
 let main_node, main_udp_node;
 if (routing_mode !== 'custom') {
 	main_node = uci.get(uciconfig, ucimain, 'main_node') || 'nil';
@@ -198,7 +198,7 @@ function parse_uri(uri) {
 		case 'socks':
 		case 'socks4':
 		case 'socks4a':
-		case 'socsk5':
+		case 'socks5':
 		case 'socks5h':
 			url = parseURL('http://' + uri[1]) || {};
 
@@ -325,10 +325,10 @@ function parse_uri(uri) {
 
 			/* Unsupported protocol */
 			if (params.type === 'kcp') {
-				log(sprintf('Skipping sunsupported %s node: %s.', uri[0], urldecode(url.hash) || url.hostname));
+				log(sprintf('Skipping unsupported %s node: %s.', uri[0], urldecode(url.hash) || url.hostname));
 				return null;
 			} else if (params.type === 'quic' && ((params.quicSecurity && params.quicSecurity !== 'none') || !sing_features.with_quic)) {
-				log(sprintf('Skipping sunsupported %s node: %s.', uri[0], urldecode(url.hash) || url.hostname));
+				log(sprintf('Skipping unsupported %s node: %s.', uri[0], urldecode(url.hash) || url.hostname));
 				if (!sing_features.with_quic)
 					log(sprintf('Please rebuild sing-box with %s support!', 'QUIC'));
 
