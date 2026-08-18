@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: GPL-2.0-only
  *
- * Copyright (C) 2022-2025 ImmortalWrt.org
+ * Copyright (C) 2022-2027 ImmortalWrt.org
  */
 
 'use strict';
@@ -596,7 +596,7 @@ function renderNodeSettings(section, data, features, main_node, routing_mode) {
 	o.depends('type', 'hysteria');
 	o.modalonly = true;
 
-	o = s.option(form.Value, 'hysteria_revc_window', _('QUIC connection receive window'),
+	o = s.option(form.Value, 'hysteria_recv_window', _('QUIC connection receive window'),
 		_('The QUIC connection-level flow control window for receiving data.'));
 	o.datatype = 'uinteger';
 	o.depends('type', 'hysteria');
